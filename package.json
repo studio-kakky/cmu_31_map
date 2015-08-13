@@ -1,0 +1,17 @@
+{
+  "name": "CMU_MAP",
+  "version": "1.0.0",
+  "description": "CMU32の発表のコード等",
+  "scripts": {},
+  "private": true,
+  "devDependencies": {
+    "browser-sync": "^2.7.13",
+    "event-stream": "^3.3.1",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-jscs": "^1.6.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "^2.0.3",
+    "run-sequence": "^1.1.1"
+  }
+}
