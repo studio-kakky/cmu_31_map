@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>地図サービス再入門</title>
+
+		<meta name="description" content="地図サービスを利用するために、あらためてなにができるのか調べてみる">
+		<meta name="author" content="studio-kakky">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="lib/reveal/css/reveal.css">
+		<link rel="stylesheet" href="lib/reveal/css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/reveal/lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'lib/reveal/css/print/pdf.css' : 'lib/reveal/css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		<style>
+		span.small {
+			font-size:0.8em;
+		}
+		.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+			text-transform:none;
+		}
+		</style>
+	</head>
+
+	<body>
+<pre style="display:none"><code></code></pre>
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-markdown>
+    			<script type="text/template">
+						## 意外と知らない地図サービス!
+						by スタジオカッキー
+					</script>
+				</section>
+				<section data-markdown>
+    			<script type="text/template">
+						###自己紹介
+
+						- Webのフロントエンドエンジニア
+						- フリーランス
+						- 昨年11月からなので、まだまだ新人です。
+						- FaceBook：本名で「柿内 暢昌」
+						- http://studio-kakky.com/
+
+					</script>
+				</section>
+				<section data-markdown>
+	    		<script type="text/template">
+						#### ちなみに
+
+						釣りが趣味で、こんなこともやってます。
+
+						![Buritsu おふねにのろう](img/img1.jpg "Buritsuという釣りメディア")
+
+					</script>
+				</section>
+				<section data-markdown>
+	    		<script type="text/template">
+
+#### 2月から6月までずっと地図の実装で食べてました。
+
+					</script>
+				</section>
+				<section data-markdown>
+	    		<script type="text/template">
+
+#### っていうか今も続いてます（QA的なやつ。）
+
+					</script>
+				</section>
+				<section data-markdown>
+	    		<script type="text/template">
+
+#### その結果。。。
+
+					</script>
+				</section>
+				<section data-markdown>
+	    		<script type="text/template">
+
+### CodeGridから連載依頼がきました！
+
+Webマップの実装手法
+https://app.codegrid.net/entry/map-1
+
+					</script>
+				</section>
+			<section data-markdown>
+				<script type="text/template">
+
+### CMUの登壇が決まりました。
+↑イマココ
+
+				</script>
+			</section>
+			<section data-markdown>
+				<script type="text/template">
+
+### 奥さんから「マップさん」と呼ばれました。
+
+				</script>
+			</section>
+			<section data-markdown>
+				<script type="text/template">
+### 今日ははなすこと
+
+- Google Maps Embed API
+- Google Maps JavaScript API V3
+- OpenStreetMapとLeaflet
+
+でできること。
+
+
+
+				</script>
+			</section>
+
+			<section data-markdown>
+				<script type="text/template">
+
+と、実装でこまったこと。
+
+				</script>
+			</section>
+
+			<section data-markdown>
+				<script type="text/template">
+
+<span class="small">注意）コーディング方法とかは詳しく話しません。
+知りたい人は、https://app.codegrid.net/を見てください。</span>
+
+				</script>
+			</section>
+
+<!-- 一番簡単な埋め込み -->
+
+<section data-markdown>
+	<script type="text/template">
+
+### 一番簡単な地図の埋め込み
+
+	</script>
+</section>
+
+<section>
+	<section data-markdown>
+		<script type="text/template">
+
+これ
+![地図の埋め込み](img/img2.png)
+
+
+		</script>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+
+![地図の埋め込み](img/img3.png)
+
+
+		</script>
+	</section>
+</section>
+
+<section data-markdown>
+	<script type="text/template">
+
+### 意外と優秀
+
+
+	</script>
+</section>
+
+<section data-markdown>
+	<script type="text/template">
+
+### マーカー追加
+![地図の埋め込み](img/img4.png)
+
+
+	</script>
+</section>
+
+<section data-markdown>
+	<script type="text/template">
+
+### ルート追加
+![地図の埋め込み](img/img5.png)
+
+
+	</script>
+</section>
+
+<section>
+	<section data-markdown>
+		<script type="text/template">
+
+### ストリートビュー追加
+![地図の埋め込み](img/img6.png)
+
+
+		</script>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.822107659456!2d139.766084!3d35.68138199999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x443025838b0ce6c6!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1439523570029" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+
+		</script>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d6481.443841701417!2d139.75504531305685!3d35.68384856159064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x60188bfbd89f700b%3A0x443025838b0ce6c6!2z5p2x5Lqs6aeF77yI5p2x5Lqs77yJ!3m2!1d35.681382!2d139.766084!4m5!1s0x60188c0d02d8064d%3A0xd11a5f0b379e6db7!2z55qH5bGFLCDjgJIxMDAtODExMSDmnbHkuqzpg73ljYPku6PnlLDljLrljYPku6PnlLDvvJHiiJLvvJE!3m2!1d35.685175!2d139.75279949999998!5e0!3m2!1sja!2sjp!4v1439523664956" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+		</script>
+	</section>
+	<section data-markdown>
+		<script type="text/template">
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m0!3m2!1sja!2sjp!4v1439523803733!6m8!1m7!1sfLQY-V1Lb0-3ejuYeEeGCw!2m2!1d35.65885317665894!2d139.7459871957584!3f234.89076844794926!4f46.98720544899885!5f0.7820865974627469" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+		</script>
+	</section>
+</section>
+
+<section data-markdown>
+	<script type="text/template">
+困りそうなこと。
+	</script>
+</section>
+
+<section data-markdown>
+	<script type="text/template">
+
+クライアント担当者
+
+「今もってる100件の物件全部に最寄り駅からの経路を表示したいんですよね〜。
+なんかGoogle Maps のページからコード取得できるし。」
+
+	</script>
+</section>
+
+<section data-markdown>
+	<script type="text/template">
+
+エ。。。。(；´∀｀)
+
+	</script>
+</section>
+
+<section data-markdown>
+	<script type="text/template">
+
+100件もあのUIから始点と終点いれんの？
+
+だれが？
+
+絶対君やらないよね？？？
+
+	</script>
+</section>
+
+<section data-markdown>
+	<script type="text/template">
+
+「そりゃいくらなんでも無理だ。。。Google Masp はライブラリもあるみたいだからそれで」
+
+	</script>
+</section>
+
+<section data-markdown>
+	<script type="text/template">
+
+の前に、、、
+
+	</script>
+</section>
+
+<!-- Google Maps Embed API -->
+
+<section data-markdown>
+	<script type="text/template">
+
+## Google Maps Embed API
+
+	</script>
+</section>
+
+<section data-markdown>
+	<script type="text/template">
+
+###Google Maps Embed API
+
+
+Google Mapsをiframeで埋め込むときに、src属性のクエリパラメターで表示する地図を制御できるもの。
+	</script>
+</section>
+
+<section>
+	<section data-markdown>
+		<script type="text/template">
+
+こんな感じ
+
+```html
+<iframe width="600" height="450" frameborder="0" style="border:0"
+src="https://www.google.com/maps/embed/v1/place
+?q=東京駅
+&key=API_KEY" allowfullscreen></iframe>
+```
+		</script>
+	</section>
+
+	<section>
+
+	<iframe width="600" height="450" frameborder="0" style="border:0"
+	src="https://www.google.com/maps/embed/v1/place
+	?q=東京駅
+	&key=AIzaSyD4iy-5TcZZdG41ZE1Wv7rQ9x7YW_yO5Us" allowfullscreen></iframe>
+
+	</section>
+</section>
+
+<section>
+	<section data-markdown>
+		<script type="text/template">
+
+さっきのやつだと
+
+```html
+<iframe width="600" height="450" frameborder="0" style="border:0"
+src="https://www.google.com/maps/embed/v1/directions
+?origin=浅草駅
+&destination=日本東京都台東区浅草１丁目
+&mode=walking
+&key=API_KEY" allowfullscreen></iframe>
+```
+		</script>
+	</section>
+
+	<section>
+
+		<iframe width="600" height="450" frameborder="0" style="border:0"
+		src="https://www.google.com/maps/embed/v1/directions
+		?origin=浅草駅
+		&destination=日本東京都台東区浅草１丁目
+		&mode=walking
+		&key=AIzaSyD4iy-5TcZZdG41ZE1Wv7rQ9x7YW_yO5Us" allowfullscreen></iframe>
+
+	</section>
+</section>
+<section data-markdown>
+	<script type="text/template">
+
+```html
+<iframe width="600" height="450" frameborder="0" style="border:0"
+src="https://www.google.com/maps/embed/v1/directions
+?origin=浅草駅
+&destination=日本東京都台東区浅草１丁目
+&mode=walking
+&key=API_KEY" allowfullscreen></iframe>
+```
+
+?origin=[最寄り駅]
+
+&destination=[物件住所]
+
+とすればOK
+	</script>
+</section>
+
+<section data-markdown>
+	<script type="text/template">
+
+ライブラリを使って複雑な実装しなくても
+
+結構いけちゃいます！
+
+	</script>
+</sectin>
+
+			</div>
+
+		</div>
+
+		<script src="lib/reveal/lib/js/head.min.js"></script>
+		<script src="lib/reveal/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/reveal/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/reveal/plugin/zoom-js/zoom.js', async: true },
+					{ src: 'lib/reveal/plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
