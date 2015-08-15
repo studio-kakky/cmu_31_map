@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<title>間違った測地系</title>
+<style>
+#google_maps{
+  width:100%;
+  height:500px;
+}
+
+</style>
+</head>
+<body>
+  <div id="google_maps"></div>
+  <script>
+    var mapCanvas = document.getElementById( 'google_maps' );
+    var mapOptions = {
+      center : new google.maps.LatLng( 35.688968, 139.758540 ),
+      zoom : 16
+    };
+    var myMap = new google.maps.Map( mapCanvas, mapOptions );
+    var marker = new google.maps.Marker({position:new google.maps.LatLng(35.688968, 139.758540)});
+    marker.setMap(myMap);
+  </script>
+
+</body>
+</html>

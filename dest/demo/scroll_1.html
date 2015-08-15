@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<title>国土地理院とのコラボ</title>
+<style>
+#google_maps{
+  width:100%;
+  height:500px;
+}
+
+body {
+  background: #fff;
+}
+
+</style>
+</head>
+<body>
+  <h1>会社情報</h1>
+  <div>
+    <p>すごい会社です。すごい理念でやってます。すごい技術持ってます</p>
+  </div>
+  <div>
+    <h3>アクセスマップ</h3>
+    <div id="google_maps"></div>
+    <ul>
+      <li>渋谷駅まで徒歩3分</li>
+  </div>
+  <div>
+    <h3>人材募集中!</h3>
+    <dl>
+      <dt>募集職種</dt>
+      <dd>エンジニア/グロースハッカー</dd>
+      <dt>応募条件</dt>
+      <dd>ものすごい技術力があって、すごくいい人</dd>
+      <dt>報酬</dt>
+      <dd>月収 100万円 ~</dd>
+    </dl>
+  </div>
+
+
+  <script>
+    var mapCanvas = document.getElementById( 'google_maps' );
+    var mapOptions = {
+      center : new google.maps.LatLng( 35.688886, 139.774279 ),
+      zoom : 16
+    };
+    var myMap = new google.maps.Map( mapCanvas, mapOptions );
+  </script>
+
+</body>
+</html>
