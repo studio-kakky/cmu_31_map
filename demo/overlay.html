@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="script/extlib/snap.svg-min.js"></script>
+<title>HTMLのオーバーレイ</title>
+<style>
+#google_maps{
+  width:100%;
+  height:400px;
+}
+
+#custom_overlay {
+  position: absolute;
+}
+</style>
+</head>
+<body>
+
+  <div id="google_maps"></div>
+
+  <script>
+
+    var mapCanvas = document.getElementById( 'google_maps' );
+    var mapOptions = {
+      center : new google.maps.LatLng( 35.661919, 139.701067 ),
+      zoom : 13
+    };
+    var myMap = new google.maps.Map( mapCanvas, mapOptions );
+
+
+    var overlayhtml = [
+      '<div id="custom_overlay">',
+      '  <svg id="svg" width=100 height=100></svg>',
+      '</div>'
+    ].join("");
+
+    var overlayLatLng = new google.maps.LatLng( 35.661919, 139.701067 )
+
+    function MyOverlayView ( overlayhtml, latlng ){
+
+      this.html = overlayhtml;
+      this.div;
+      this.position = latlng;
+
+    }
+
+    MyOverlayView.prototype = new google.maps.OverlayView();
+
+    MyOverlayView.prototype.onAdd = function(){
+
+      this.getPanes().floatPane.innerHTML = this.html;
+      this.div = document.getElementById( "custom_overlay" );
+      var s = Snap('#svg');
+      var circle = s.circle(34,34,30)
+      var totalLength = 2 * circle.attr('cx') * Math.PI
+      circle.attr({
+        fill:'none',
+        stroke:'red',
+        'stroke-width':4,
+        'stroke-dasharray' : totalLength + ' ' + totalLength,
+        'stroke-dashoffset': totalLength
+      });
+      anim(circle);
+    }
+
+    MyOverlayView.prototype.draw = function(){
+      var point = this.getProjection().fromLatLngToDivPixel( this.position );
+      var elementY = point.y - 34;
+      var elementX = point.x - 34;
+
+      this.div.style.top = elementY + 'px';
+      this.div.style.left = elementX + 'px';
+
+
+    }
+
+    MyOverlayView.prototype.onRemove = function(){
+      this.getPanes().floatPane.removeChild( this.div );
+      this.div = null;
+    }
+
+    var ol = new MyOverlayView( overlayhtml, overlayLatLng );
+    ol.setMap( myMap );
+
+
+    function anim(circle) {
+      var totalLength = circle.attr('cx') * Math.PI * 2;
+      circle.attr({
+        'stroke-dasharray' : totalLength + ' ' + totalLength,
+        'stroke-dashoffset': totalLength
+      })
+      circle.animate( {
+        'stroke-dashoffset': 0
+      }, 300, mina.easeout , function() {
+        setTimeout(function() {
+          anim(circle);
+        },2000)
+      });
+    }
+
+
+
+  </script>
+
+</body>
+</html>

@@ -5,7 +5,8 @@
     "柿内暢昌 <nob@studio-kakky.com>"
   ],
   "dependencies": {
-    "reveal.js": "~3.1.0"
+    "reveal.js": "~3.1.0",
+    "snap.svg": "~0.4.1"
   },
-  "private":true
+  "private": true
 }
